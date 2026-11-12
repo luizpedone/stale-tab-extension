@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stale Tab Curtain</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png" />
+    <link rel="stylesheet" href="theme.css" />
+    <style>
+      body {
+        margin: 0;
+        width: 300px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+      main {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .brand {
+        margin: 0 0 2px;
+        font-size: 11px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      h1 {
+        margin: 0;
+        font-size: 15px;
+        letter-spacing: 0.01em;
+        overflow-wrap: anywhere;
+      }
+      #toggle {
+        font: inherit;
+        font-size: 14px;
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        background: var(--primary-bg);
+        border: 1px solid var(--primary-bg);
+        color: var(--primary-text);
+      }
+      #toggle.undo {
+        background: transparent;
+        border-color: var(--field-border);
+        color: var(--text);
+      }
+      #toggle[hidden] {
+        display: none;
+      }
+      .note {
+        margin: 0;
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .note[hidden] {
+        display: none;
+      }
+      footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        border-top: 1px solid var(--border);
+        padding-top: 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      a {
+        color: var(--text);
+      }
+      a:focus-visible,
+      #toggle:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="brand">Stale Tab Curtain</p>
+        <h1 id="site">Checking this page…</h1>
+      </header>
+
+      <button type="button" id="toggle" hidden>Exclude this site</button>
+      <p class="note" id="note" aria-live="polite" hidden></p>
+
+      <footer>
+        <span id="summary"></span>
+        <a href="#" id="open-settings">Settings</a>
+      </footer>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

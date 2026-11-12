@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Stale Tab Curtain: a browser window with a crescent moon inside. -->
+  <rect width="128" height="128" rx="28" fill="#111827" />
+
+  <!-- window body -->
+  <rect x="26" y="30" width="76" height="68" rx="13" fill="#f9fafb" />
+  <!-- browser chrome, same rounded top corners as the body -->
+  <path d="M26 46V43a13 13 0 0 1 13-13h50a13 13 0 0 1 13 13v3z" fill="#334155" />
+
+  <!-- crescent moon: navy disc with a lighter disc bitten out of it -->
+  <circle cx="65" cy="72" r="24" fill="#111827" />
+  <circle cx="76" cy="68" r="22" fill="#f9fafb" />
+</svg>

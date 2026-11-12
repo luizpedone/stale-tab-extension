@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stale Tab Curtain — settings</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png" />
+    <link rel="stylesheet" href="theme.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 40px 20px;
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        justify-content: center;
+      }
+      .card {
+        width: 100%;
+        max-width: 520px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+      }
+      h1 {
+        font-size: 18px;
+        margin: 0 0 4px;
+      }
+      p.sub {
+        margin: 0 0 24px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      input[type="number"] {
+        width: 96px;
+        padding: 8px 10px;
+        font: inherit;
+        font-size: 14px;
+        border: 1px solid var(--field-border);
+        border-radius: 8px;
+        background: var(--field-bg);
+        color: var(--text);
+      }
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 110px;
+        padding: 10px;
+        font: inherit;
+        font-size: 14px;
+        line-height: 1.5;
+        border: 1px solid var(--field-border);
+        border-radius: 8px;
+        background: var(--field-bg);
+        color: var(--text);
+        resize: vertical;
+      }
+      .hint {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 6px 0 0;
+      }
+      .hint.warn {
+        color: var(--danger);
+      }
+      .field {
+        margin-bottom: 22px;
+      }
+      /* segmented theme picker */
+      .segmented {
+        display: inline-flex;
+        border: 1px solid var(--field-border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .segmented label {
+        position: relative;
+        margin: 0;
+        font-weight: 500;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .segmented label + label {
+        border-left: 1px solid var(--field-border);
+      }
+      .segmented input {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .segmented span {
+        display: block;
+        padding: 8px 16px;
+        color: var(--text);
+      }
+      .segmented input:checked + span {
+        background: var(--primary-bg);
+        color: var(--primary-text);
+      }
+      .segmented input:focus-visible + span {
+        outline: 2px solid var(--focus);
+        outline-offset: -2px;
+      }
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      button {
+        font: inherit;
+        font-size: 14px;
+        padding: 9px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      button[type="button"] {
+        background: transparent;
+        border: 1px solid var(--field-border);
+        color: var(--text);
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      #status {
+        font-size: 13px;
+        color: var(--ok);
+      }
+      #status.error {
+        color: var(--danger);
+      }
+    </style>
+  </head>
+  <body>
+    <form class="card" id="settings">
+      <h1>Stale Tab Curtain</h1>
+      <p class="sub">
+        Unload tabs you haven't touched in a while. Changes save automatically.
+      </p>
+
+      <div class="field">
+        <label for="minutes">Put tabs to sleep after</label>
+        <div class="row">
+          <input
+            id="minutes"
+            name="minutes"
+            type="number"
+            min="0.02"
+            max="43200"
+            step="any"
+            required
+          />
+          <span>minutes</span>
+        </div>
+        <p class="hint" id="duration-hint"></p>
+        <p class="hint">
+          Only background tabs are unloaded, never the one you're looking at.
+        </p>
+      </div>
+
+      <div class="field">
+        <label for="domains">Excluded domains</label>
+        <textarea
+          id="domains"
+          name="domains"
+          spellcheck="false"
+          placeholder="mail.google.com&#10;calendar.google.com"
+        ></textarea>
+        <p class="hint" id="domains-note"></p>
+        <p class="hint">
+          One per line (or comma separated). A domain also covers its
+          subdomains, so <code>example.com</code> excludes
+          <code>app.example.com</code> too.
+        </p>
+      </div>
+
+      <div class="field">
+        <label>Appearance</label>
+        <div class="segmented" role="radiogroup" aria-label="Appearance">
+          <label>
+            <input type="radio" name="theme" value="system" />
+            <span>System</span>
+          </label>
+          <label>
+            <input type="radio" name="theme" value="light" />
+            <span>Light</span>
+          </label>
+          <label>
+            <input type="radio" name="theme" value="dark" />
+            <span>Dark</span>
+          </label>
+        </div>
+        <p class="hint">Used by the page shown on sleeping tabs.</p>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="reset">Reset to defaults</button>
+        <span id="status" role="status"></span>
+      </div>
+    </form>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

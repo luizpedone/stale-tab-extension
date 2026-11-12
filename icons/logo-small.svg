@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Simplified mark for 16px tabs and toolbars: just the moon. -->
+  <rect width="128" height="128" rx="28" fill="#111827" />
+
+  <circle cx="58" cy="68" r="34" fill="#f9fafb" />
+  <circle cx="74" cy="62" r="30" fill="#111827" />
+</svg>
