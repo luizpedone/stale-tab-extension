@@ -110,7 +110,7 @@ placeholders from the default.
 ## Development
 
 There is no build step and no dependencies — the extension *is* the source
-files. The scripts need Node 20.
+files. The scripts need Node 22 or newer; CI runs them on Node 24.
 
 ```bash
 npm test         # unit tests for the pure logic in settings.js
@@ -128,7 +128,8 @@ package that leaks development files. The zip it builds is the one to upload.
 Tag it: `git tag v0.7.1 && git push origin v0.7.1`. The release workflow runs
 the checks, uploads the package through the Chrome Web Store API and submits it
 for review. Setup, secrets and the things that bite are in
-[RELEASING.md](RELEASING.md).
+[RELEASING.md](RELEASING.md). The last automated release was `v0.7.0`; versions
+already published or submitted can never be reused, so bump the manifest first.
 
 ## License
 
