@@ -1,3 +1,4 @@
+import { localizeDocument, t } from "./i18n.js";
 import { formatDurationText, getSettings } from "./settings.js";
 
 const siteEl = document.getElementById("site");
@@ -18,12 +19,8 @@ function exclusionSource(domains) {
 }
 
 function standingNote(source) {
-  if (host === null) {
-    return "Only ordinary web pages can be excluded — this one has no site to add.";
-  }
-  if (source && source !== host) {
-    return `Excluded through ${source}, which also covers its subdomains.`;
-  }
+  if (host === null) return t("popupNoSiteNote");
+  if (source && source !== host) return t("popupExcludedThrough", [source]);
   return null;
 }
 
@@ -31,11 +28,11 @@ function render() {
   const source = exclusionSource(settings.excludedDomains);
   const supported = host !== null;
 
-  siteEl.textContent = supported ? host : "This page can't be excluded";
+  siteEl.textContent = supported ? host : t("popupCannotExclude");
   toggleEl.hidden = !supported;
 
   if (supported) {
-    toggleEl.textContent = source ? "Include this site again" : "Exclude this site";
+    toggleEl.textContent = source ? t("popupInclude") : t("popupExclude");
     toggleEl.classList.toggle("undo", Boolean(source));
   }
 
@@ -46,8 +43,8 @@ function render() {
   // The footer describes this tab's policy. Saying "sleeps after 25 minutes"
   // next to "Include this site again" contradicted itself.
   summaryEl.textContent = source
-    ? "This site never sleeps"
-    : `Sleeps after ${formatDurationText(settings.idleMinutes)} idle`;
+    ? t("popupNeverSleeps")
+    : t("popupSleepsAfter", [formatDurationText(settings.idleMinutes)]);
 }
 
 function showFlash(text) {
@@ -72,8 +69,8 @@ toggleEl.addEventListener("click", async () => {
   await chrome.storage.sync.set({ settings });
   showFlash(
     excluding
-      ? `Excluded — ${host} stays awake from now on.`
-      : `Included — ${host} can be put to sleep again.`,
+      ? t("popupFlashExcluded", [host])
+      : t("popupFlashIncluded", [host]),
   );
 });
 
@@ -104,4 +101,5 @@ async function init() {
   render();
 }
 
+localizeDocument();
 init();

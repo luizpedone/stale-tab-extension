@@ -1,3 +1,4 @@
+import { localizeDocument, t } from "./i18n.js";
 import { formatDurationText, getSettings, isExcluded } from "./settings.js";
 
 const titleEl = document.getElementById("title");
@@ -75,21 +76,20 @@ async function init() {
   document.documentElement.dataset.theme = settings.theme;
 
   if (!target) {
-    document.title = "[Stale] tab";
-    reasonEl.textContent = "It went unused long enough to be unloaded.";
-    addressEl.textContent =
-      "Its address wasn't recorded — use the browser's Back button to return to it.";
+    document.title = t("dormantTitle");
+    reasonEl.textContent = t("dormantUnused");
+    addressEl.textContent = t("dormantNoAddress");
     reactivate.hidden = true;
     keepAwake.hidden = true;
     return;
   }
 
   const label = labelFor(target);
-  document.title = `[Stale] ${label}`;
+  document.title = t("dormantTitleWithLabel", [label]);
   titleEl.textContent = new URL(target).hostname;
-  reasonEl.textContent = `Unloaded after ${formatDurationText(
-    settings.idleMinutes,
-  )} without use, to free memory.`;
+  reasonEl.textContent = t("dormantReason", [
+    formatDurationText(settings.idleMinutes),
+  ]);
 
   const address = addressFor(target);
   addressEl.hidden = !address;
@@ -100,7 +100,7 @@ async function init() {
   if (isExcluded(target, settings.excludedDomains)) keepAwake.hidden = true;
 
   const mod = navigator.userAgent.includes("Mac") ? "⌘R" : "Ctrl+R";
-  tipEl.textContent = `Press Enter or ${mod} to reopen it, or use the browser's Back button.`;
+  tipEl.textContent = t("dormantTip", [mod]);
 
   // Enter works without tabbing to the button first, but autofocus would leave
   // a focus ring on an otherwise quiet page.
@@ -114,23 +114,22 @@ async function init() {
 
   reactivate.addEventListener("click", async () => {
     reactivate.disabled = true;
-    reactivate.textContent = "Reactivating…";
+    reactivate.textContent = t("dormantReactivating");
     try {
       const tab = await chrome.tabs.getCurrent();
       if (!tab?.id) throw new Error("no tab");
       await chrome.tabs.update(tab.id, { url: target });
     } catch {
       reactivate.disabled = false;
-      reactivate.textContent = "Reactivate";
+      reactivate.textContent = t("dormantReactivate");
       addressEl.hidden = false;
-      addressEl.textContent =
-        "Couldn't reopen this page. Use the browser's Back button instead.";
+      addressEl.textContent = t("dormantReopenFailed");
     }
   });
 
   keepAwake.addEventListener("click", async () => {
     keepAwake.disabled = true;
-    keepAwake.textContent = "Excluding…";
+    keepAwake.textContent = t("dormantExcluding");
     const host = hostOf(target);
     try {
       if (!host) throw new Error("no host");
@@ -147,12 +146,12 @@ async function init() {
       location.replace(target);
     } catch {
       keepAwake.disabled = false;
-      keepAwake.textContent = "Never sleep this site";
+      keepAwake.textContent = t("dormantNeverSleep");
       addressEl.hidden = false;
-      addressEl.textContent =
-        "Couldn't update the exclusion list. Try again from the toolbar popup.";
+      addressEl.textContent = t("dormantExcludeFailed");
     }
   });
 }
 
+localizeDocument();
 init();

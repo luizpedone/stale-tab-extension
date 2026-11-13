@@ -2,39 +2,54 @@
 import assert from "node:assert/strict";
 import { afterEach, describe, it } from "node:test";
 
-import { DEFAULTS, formatDuration, formatDurationText, getSettings, isExcluded } from "../settings.js";
+import { DEFAULTS, formatDurationText, getSettings, isExcluded } from "../settings.js";
 
-describe("formatDuration", () => {
+// Intl may separate the number and the unit with a non-breaking or narrow
+// no-break space depending on the locale.
+const plain = (text) => text.replace(/[\u00a0\u202f\u2009]/g, " ");
+
+const duration = (minutes, locale) => plain(formatDurationText(minutes, locale));
+
+describe("formatDurationText", () => {
   it("renders whole hours", () => {
-    assert.deepEqual(formatDuration(120), { amount: "2", unit: "hours" });
-    assert.deepEqual(formatDuration(60), { amount: "1", unit: "hour" });
+    assert.equal(duration(120, "en"), "2 hours");
+    assert.equal(duration(60, "en"), "1 hour");
   });
 
   it("renders minutes below an hour", () => {
-    assert.deepEqual(formatDuration(45), { amount: "45", unit: "minutes" });
-    assert.deepEqual(formatDuration(1), { amount: "1", unit: "minute" });
+    assert.equal(duration(45, "en"), "45 minutes");
+    assert.equal(duration(1, "en"), "1 minute");
   });
 
   it("renders sub-minute values in seconds", () => {
-    assert.deepEqual(formatDuration(0.06), { amount: "4", unit: "seconds" });
-    assert.deepEqual(formatDuration(1 / 60), { amount: "1", unit: "second" });
+    assert.equal(duration(0.06, "en"), "4 seconds");
+    assert.equal(duration(1 / 60, "en"), "1 second");
   });
 
-  it("keeps fractional hours to two decimals", () => {
-    assert.deepEqual(formatDuration(90), { amount: "1.5", unit: "hours" });
+  it("keeps fractional hours", () => {
+    assert.equal(duration(90, "en"), "1.5 hours");
   });
 
   it("falls back to zero minutes for unusable input", () => {
     for (const value of [0, -5, Number.NaN, Number.POSITIVE_INFINITY, undefined, "abc"]) {
-      assert.deepEqual(formatDuration(value), { amount: "0", unit: "minutes" });
+      assert.equal(duration(value, "en"), "0 minutes");
     }
   });
-});
 
-describe("formatDurationText", () => {
-  it("joins amount and unit", () => {
-    assert.equal(formatDurationText(120), "2 hours");
-    assert.equal(formatDurationText(45), "45 minutes");
+  it("localizes the unit and the plural", () => {
+    assert.equal(duration(120, "pt-BR"), "2 horas");
+    assert.equal(duration(1, "pt-BR"), "1 minuto");
+    assert.equal(duration(0.06, "pt-BR"), "4 segundos");
+    // CLDR's Portuguese plural rule treats 1.5 as singular ("i = 0..1"), so the
+    // platform says "1,5 hora". Whole hours, the common case, read normally.
+    assert.equal(duration(90, "pt-BR"), "1,5 hora");
+
+    assert.equal(duration(120, "es"), "2 horas");
+    assert.equal(duration(1, "es"), "1 minuto");
+
+    assert.equal(duration(120, "fr"), "2 heures");
+    assert.equal(duration(45, "fr"), "45 minutes");
+    assert.equal(duration(0.06, "fr"), "4 secondes");
   });
 });
 

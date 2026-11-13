@@ -1,0 +1,167 @@
+{
+  "appName": {
+    "message": "Stale Tab Curtain"
+  },
+  "appDesc": {
+    "message": "Décharge les onglets en arrière-plan inutilisés depuis un moment et les remplace par une page avec un bouton de réactivation."
+  },
+
+  "popupChecking": {
+    "message": "Vérification de cette page…"
+  },
+  "popupCannotExclude": {
+    "message": "Cette page ne peut pas être exclue"
+  },
+  "popupNoSiteNote": {
+    "message": "Seules les pages web ordinaires peuvent être exclues — celle-ci n'a pas de site à ajouter."
+  },
+  "popupExclude": {
+    "message": "Exclure ce site"
+  },
+  "popupInclude": {
+    "message": "Réintégrer ce site"
+  },
+  "popupNeverSleeps": {
+    "message": "Ce site ne se met jamais en veille"
+  },
+  "popupSleepsAfter": {
+    "message": "Mise en veille après $1 d'inactivité"
+  },
+  "popupExcludedThrough": {
+    "message": "Exclu via $1, qui couvre aussi ses sous-domaines."
+  },
+  "popupFlashExcluded": {
+    "message": "Exclu — $1 ne se mettra plus en veille."
+  },
+  "popupFlashIncluded": {
+    "message": "Réintégré — $1 peut de nouveau se mettre en veille."
+  },
+  "settingsLink": {
+    "message": "Paramètres"
+  },
+
+  "optionsTitle": {
+    "message": "Stale Tab Curtain — paramètres"
+  },
+  "optionsSub": {
+    "message": "Décharge les onglets que vous n'avez pas utilisés depuis un moment. Les modifications sont enregistrées automatiquement."
+  },
+  "optionsThresholdLabel": {
+    "message": "Mettre les onglets en veille après"
+  },
+  "unitMinutes": {
+    "message": "minutes"
+  },
+  "optionsBackgroundOnly": {
+    "message": "Seuls les onglets en arrière-plan sont déchargés, jamais celui que vous regardez."
+  },
+  "optionsDomainsLabel": {
+    "message": "Domaines exclus"
+  },
+  "optionsDomainsHint": {
+    "message": "Un par ligne (ou séparés par des virgules). Un domaine couvre aussi ses sous-domaines : <code>example.com</code> exclut donc <code>app.example.com</code>."
+  },
+  "appearanceLabel": {
+    "message": "Apparence"
+  },
+  "themeSystem": {
+    "message": "Système"
+  },
+  "themeLight": {
+    "message": "Clair"
+  },
+  "themeDark": {
+    "message": "Sombre"
+  },
+  "optionsThemeHint": {
+    "message": "Utilisé par la page affichée sur les onglets en veille."
+  },
+  "optionsReset": {
+    "message": "Rétablir les valeurs par défaut"
+  },
+
+  "errorMinutesPositive": {
+    "message": "Saisissez un nombre de minutes supérieur à 0."
+  },
+  "errorMinutesMax": {
+    "message": "Restez à $1 minutes maximum."
+  },
+  "hintStillSleeping": {
+    "message": "Toujours en veille après $1."
+  },
+  "hintSleepsAfter": {
+    "message": "Les onglets se mettent en veille après $1 sans utilisation."
+  },
+
+  "domainsNone": {
+    "message": "Aucun site exclu."
+  },
+  "domainsOne": {
+    "message": "1 site exclu : $1."
+  },
+  "domainsMany": {
+    "message": "$1 sites exclus."
+  },
+  "domainsIgnoredOne": {
+    "message": "Une entrée ignorée car ce n'est pas un domaine : $1."
+  },
+  "domainsIgnoredMany": {
+    "message": "$1 entrées ignorées car ce ne sont pas des domaines : $2."
+  },
+
+  "statusSaved": {
+    "message": "Enregistré."
+  },
+  "statusSaveFailed": {
+    "message": "Impossible d'enregistrer — vérifiez que la synchronisation Chrome est disponible."
+  },
+  "statusResetFailed": {
+    "message": "Impossible de rétablir — vérifiez que la synchronisation Chrome est disponible."
+  },
+  "statusResetDone": {
+    "message": "Valeurs par défaut rétablies."
+  },
+  "confirmReset": {
+    "message": "Rétablir tous les réglages par défaut ? Vos sites exclus seront supprimés."
+  },
+
+  "dormantTitle": {
+    "message": "[En veille] onglet"
+  },
+  "dormantTitleWithLabel": {
+    "message": "[En veille] $1"
+  },
+  "dormantHeading": {
+    "message": "Cet onglet a été mis en veille."
+  },
+  "dormantUnused": {
+    "message": "Il est resté inutilisé assez longtemps pour être déchargé."
+  },
+  "dormantNoAddress": {
+    "message": "Son adresse n'a pas été enregistrée — utilisez le bouton Retour du navigateur."
+  },
+  "dormantReason": {
+    "message": "Déchargé après $1 sans utilisation, pour libérer de la mémoire."
+  },
+  "dormantTip": {
+    "message": "Appuyez sur Entrée ou $1 pour le rouvrir, ou utilisez le bouton Retour du navigateur."
+  },
+  "dormantReactivate": {
+    "message": "Réactiver"
+  },
+  "dormantReactivating": {
+    "message": "Réactivation…"
+  },
+  "dormantReopenFailed": {
+    "message": "Impossible de rouvrir cette page. Utilisez le bouton Retour du navigateur."
+  },
+  "dormantNeverSleep": {
+    "message": "Ne jamais mettre ce site en veille"
+  },
+  "dormantExcluding": {
+    "message": "Exclusion…"
+  },
+  "dormantExcludeFailed": {
+    "message": "Impossible de mettre à jour la liste des exclusions. Réessayez depuis le popup de la barre d'outils."
+  }
+}

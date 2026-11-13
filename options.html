@@ -2,7 +2,7 @@
 <html lang="en" data-theme="system">
   <head>
     <meta charset="utf-8" />
-    <title>Stale Tab Curtain — settings</title>
+    <title data-i18n="optionsTitle">Stale Tab Curtain — settings</title>
     <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png" />
     <link rel="stylesheet" href="theme.css" />
     <style>
@@ -149,13 +149,13 @@
   </head>
   <body>
     <form class="card" id="settings">
-      <h1>Stale Tab Curtain</h1>
-      <p class="sub">
+      <h1 data-i18n="appName">Stale Tab Curtain</h1>
+      <p class="sub" data-i18n="optionsSub">
         Unload tabs you haven't touched in a while. Changes save automatically.
       </p>
 
       <div class="field">
-        <label for="minutes">Put tabs to sleep after</label>
+        <label for="minutes" data-i18n="optionsThresholdLabel">Put tabs to sleep after</label>
         <div class="row">
           <input
             id="minutes"
@@ -166,16 +166,16 @@
             step="any"
             required
           />
-          <span>minutes</span>
+          <span data-i18n="unitMinutes">minutes</span>
         </div>
         <p class="hint" id="duration-hint"></p>
-        <p class="hint">
+        <p class="hint" data-i18n="optionsBackgroundOnly">
           Only background tabs are unloaded, never the one you're looking at.
         </p>
       </div>
 
       <div class="field">
-        <label for="domains">Excluded domains</label>
+        <label for="domains" data-i18n="optionsDomainsLabel">Excluded domains</label>
         <textarea
           id="domains"
           name="domains"
@@ -183,7 +183,7 @@
           placeholder="mail.google.com&#10;calendar.google.com"
         ></textarea>
         <p class="hint" id="domains-note"></p>
-        <p class="hint">
+        <p class="hint" data-i18n-html="optionsDomainsHint">
           One per line (or comma separated). A domain also covers its
           subdomains, so <code>example.com</code> excludes
           <code>app.example.com</code> too.
@@ -191,26 +191,26 @@
       </div>
 
       <div class="field">
-        <label>Appearance</label>
-        <div class="segmented" role="radiogroup" aria-label="Appearance">
+        <label data-i18n="appearanceLabel">Appearance</label>
+        <div class="segmented" role="radiogroup" aria-label="Appearance" data-i18n-aria-label="appearanceLabel">
           <label>
             <input type="radio" name="theme" value="system" />
-            <span>System</span>
+            <span data-i18n="themeSystem">System</span>
           </label>
           <label>
             <input type="radio" name="theme" value="light" />
-            <span>Light</span>
+            <span data-i18n="themeLight">Light</span>
           </label>
           <label>
             <input type="radio" name="theme" value="dark" />
-            <span>Dark</span>
+            <span data-i18n="themeDark">Dark</span>
           </label>
         </div>
-        <p class="hint">Used by the page shown on sleeping tabs.</p>
+        <p class="hint" data-i18n="optionsThemeHint">Used by the page shown on sleeping tabs.</p>
       </div>
 
       <div class="actions">
-        <button type="button" id="reset">Reset to defaults</button>
+        <button type="button" id="reset" data-i18n="optionsReset">Reset to defaults</button>
         <span id="status" role="status"></span>
       </div>
     </form>

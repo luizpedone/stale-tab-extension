@@ -1,3 +1,4 @@
+import { localizeDocument, t } from "./i18n.js";
 import { DEFAULTS, formatDurationText, getSettings } from "./settings.js";
 
 const MAX_MINUTES = 43200; // matches the input's max attribute
@@ -77,10 +78,10 @@ function readMinutes() {
   const raw = minutesInput.value.trim();
   const minutes = Number(raw);
   if (!raw || !Number.isFinite(minutes) || minutes <= 0) {
-    return { error: "Enter a number of minutes greater than 0." };
+    return { error: t("errorMinutesPositive") };
   }
   if (minutes > MAX_MINUTES) {
-    return { error: `Keep it at ${MAX_MINUTES} minutes or less.` };
+    return { error: t("errorMinutesMax", [String(MAX_MINUTES)]) };
   }
   return { minutes };
 }
@@ -88,8 +89,8 @@ function readMinutes() {
 function renderDurationHint() {
   const { minutes, error } = readMinutes();
   durationHint.textContent = error
-    ? `${error} Still sleeping after ${formatDurationText(saved.idleMinutes)}.`
-    : `Tabs sleep after ${formatDurationText(minutes)} without use.`;
+    ? `${error} ${t("hintStillSleeping", [formatDurationText(saved.idleMinutes)])}`
+    : t("hintSleepsAfter", [formatDurationText(minutes)]);
   durationHint.classList.toggle("warn", Boolean(error));
   minutesInput.setAttribute("aria-invalid", error ? "true" : "false");
 }
@@ -97,16 +98,17 @@ function renderDurationHint() {
 function renderDomainsNote() {
   const { domains, rejected } = parseDomains(domainsInput.value);
 
-  let text = "No sites excluded.";
-  if (domains.length === 1) text = `1 site excluded: ${domains[0]}.`;
-  if (domains.length > 1) text = `${domains.length} sites excluded.`;
+  let text = t("domainsNone");
+  if (domains.length === 1) text = t("domainsOne", [domains[0]]);
+  if (domains.length > 1) text = t("domainsMany", [String(domains.length)]);
 
   if (rejected.length === 1) {
-    text += ` Ignored one entry that isn't a domain: ${rejected[0]}.`;
+    text += ` ${t("domainsIgnoredOne", [rejected[0]])}`;
   } else if (rejected.length > 1) {
-    text += ` Ignored ${rejected.length} entries that aren't domains: ${rejected.join(
-      ", ",
-    )}.`;
+    text += ` ${t("domainsIgnoredMany", [
+      String(rejected.length),
+      rejected.join(", "),
+    ])}`;
   }
 
   domainsNote.textContent = text;
@@ -137,10 +139,10 @@ async function persist(patch) {
   saved = next;
   try {
     await chrome.storage.sync.set({ settings: next });
-    setStatus("Saved.");
+    setStatus(t("statusSaved"));
   } catch {
     saved = previous;
-    setStatus("Couldn't save — check that Chrome sync is available.", true);
+    setStatus(t("statusSaveFailed"), true);
   }
 }
 
@@ -232,9 +234,7 @@ document.addEventListener("visibilitychange", () => {
 });
 
 resetButton.addEventListener("click", async () => {
-  const ok = confirm(
-    "Reset every setting to its default? Your excluded sites will be removed.",
-  );
+  const ok = confirm(t("confirmReset"));
   if (!ok) return;
 
   clearTimeout(minutesTimer);
@@ -250,13 +250,15 @@ resetButton.addEventListener("click", async () => {
   try {
     await chrome.storage.sync.set({ settings: defaults });
   } catch {
-    setStatus("Couldn't reset — check that Chrome sync is available.", true);
+    setStatus(t("statusResetFailed"), true);
     return;
   }
   fill(defaults);
   render();
-  setStatus("Defaults restored.");
+  setStatus(t("statusResetDone"));
 });
+
+localizeDocument();
 
 getSettings().then((settings) => {
   saved = {

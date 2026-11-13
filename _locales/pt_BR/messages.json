@@ -1,0 +1,167 @@
+{
+  "appName": {
+    "message": "Stale Tab Curtain"
+  },
+  "appDesc": {
+    "message": "Descarrega abas em segundo plano que você não usa há um tempo, substituindo-as por uma página com um botão de reativar."
+  },
+
+  "popupChecking": {
+    "message": "Verificando esta página…"
+  },
+  "popupCannotExclude": {
+    "message": "Esta página não pode ser excluída"
+  },
+  "popupNoSiteNote": {
+    "message": "Só é possível excluir páginas web comuns — esta não tem um site para adicionar."
+  },
+  "popupExclude": {
+    "message": "Excluir este site"
+  },
+  "popupInclude": {
+    "message": "Incluir este site novamente"
+  },
+  "popupNeverSleeps": {
+    "message": "Este site nunca hiberna"
+  },
+  "popupSleepsAfter": {
+    "message": "Hiberna após $1 sem uso"
+  },
+  "popupExcludedThrough": {
+    "message": "Excluído por $1, que também cobre os subdomínios."
+  },
+  "popupFlashExcluded": {
+    "message": "Excluído — $1 não hiberna mais."
+  },
+  "popupFlashIncluded": {
+    "message": "Incluído — $1 pode hibernar de novo."
+  },
+  "settingsLink": {
+    "message": "Configurações"
+  },
+
+  "optionsTitle": {
+    "message": "Stale Tab Curtain — configurações"
+  },
+  "optionsSub": {
+    "message": "Descarregue abas que você não usa há um tempo. As alterações são salvas automaticamente."
+  },
+  "optionsThresholdLabel": {
+    "message": "Colocar abas para hibernar após"
+  },
+  "unitMinutes": {
+    "message": "minutos"
+  },
+  "optionsBackgroundOnly": {
+    "message": "Só abas em segundo plano são descarregadas, nunca a que você está vendo."
+  },
+  "optionsDomainsLabel": {
+    "message": "Domínios excluídos"
+  },
+  "optionsDomainsHint": {
+    "message": "Um por linha (ou separados por vírgula). Um domínio também cobre os subdomínios, então <code>example.com</code> exclui <code>app.example.com</code> também."
+  },
+  "appearanceLabel": {
+    "message": "Aparência"
+  },
+  "themeSystem": {
+    "message": "Sistema"
+  },
+  "themeLight": {
+    "message": "Claro"
+  },
+  "themeDark": {
+    "message": "Escuro"
+  },
+  "optionsThemeHint": {
+    "message": "Usado pela página exibida nas abas hibernadas."
+  },
+  "optionsReset": {
+    "message": "Restaurar padrões"
+  },
+
+  "errorMinutesPositive": {
+    "message": "Digite um número de minutos maior que 0."
+  },
+  "errorMinutesMax": {
+    "message": "Use no máximo $1 minutos."
+  },
+  "hintStillSleeping": {
+    "message": "Continua hibernando após $1."
+  },
+  "hintSleepsAfter": {
+    "message": "As abas hibernam após $1 sem uso."
+  },
+
+  "domainsNone": {
+    "message": "Nenhum site excluído."
+  },
+  "domainsOne": {
+    "message": "1 site excluído: $1."
+  },
+  "domainsMany": {
+    "message": "$1 sites excluídos."
+  },
+  "domainsIgnoredOne": {
+    "message": "Uma entrada foi ignorada por não ser um domínio: $1."
+  },
+  "domainsIgnoredMany": {
+    "message": "$1 entradas foram ignoradas por não serem domínios: $2."
+  },
+
+  "statusSaved": {
+    "message": "Salvo."
+  },
+  "statusSaveFailed": {
+    "message": "Não foi possível salvar — verifique se a sincronização do Chrome está disponível."
+  },
+  "statusResetFailed": {
+    "message": "Não foi possível restaurar — verifique se a sincronização do Chrome está disponível."
+  },
+  "statusResetDone": {
+    "message": "Padrões restaurados."
+  },
+  "confirmReset": {
+    "message": "Restaurar todas as configurações para o padrão? Seus sites excluídos serão removidos."
+  },
+
+  "dormantTitle": {
+    "message": "[Hibernada] aba"
+  },
+  "dormantTitleWithLabel": {
+    "message": "[Hibernada] $1"
+  },
+  "dormantHeading": {
+    "message": "Esta aba foi colocada para hibernar."
+  },
+  "dormantUnused": {
+    "message": "Ficou sem uso tempo suficiente para ser descarregada."
+  },
+  "dormantNoAddress": {
+    "message": "O endereço não foi registrado — use o botão Voltar do navegador para retornar."
+  },
+  "dormantReason": {
+    "message": "Descarregada após $1 sem uso, para liberar memória."
+  },
+  "dormantTip": {
+    "message": "Pressione Enter ou $1 para reabrir, ou use o botão Voltar do navegador."
+  },
+  "dormantReactivate": {
+    "message": "Reativar"
+  },
+  "dormantReactivating": {
+    "message": "Reativando…"
+  },
+  "dormantReopenFailed": {
+    "message": "Não foi possível reabrir esta página. Use o botão Voltar do navegador."
+  },
+  "dormantNeverSleep": {
+    "message": "Nunca hibernar este site"
+  },
+  "dormantExcluding": {
+    "message": "Excluindo…"
+  },
+  "dormantExcludeFailed": {
+    "message": "Não foi possível atualizar a lista de exclusões. Tente de novo pelo popup da barra de ferramentas."
+  }
+}

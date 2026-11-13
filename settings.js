@@ -1,3 +1,5 @@
+import { uiLanguage } from "./i18n.js";
+
 // Settings shared by the service worker, the popup and the options page.
 
 export const DEFAULTS = {
@@ -33,33 +35,38 @@ function idleMinutes(settings) {
   return DEFAULTS.idleMinutes;
 }
 
-// 120 -> "2 hours", 45 -> "45 minutes", 0.06 -> "4 seconds".
-export function formatDuration(minutes) {
+// 120 -> "2 hours", 45 -> "45 minutes", 0.06 -> "4 seconds". Intl supplies the
+// plural forms and unit names in every locale: chrome.i18n.getMessage has no
+// plural rules, so wording them by hand would need a key per unit per plural.
+export function formatDurationText(minutes, locale = uiLanguage()) {
   const value = Number(minutes);
 
-  if (!Number.isFinite(value) || value <= 0) {
-    return { amount: "0", unit: "minutes" };
+  let amount = 0;
+  let unit = "minute";
+
+  if (Number.isFinite(value) && value > 0) {
+    if (value < 1) {
+      amount = Math.round(value * 60);
+      unit = "second";
+    } else if (value < 60) {
+      amount = Number(value.toFixed(2));
+      unit = "minute";
+    } else {
+      amount = Number((value / 60).toFixed(2));
+      unit = "hour";
+    }
   }
 
-  if (value < 1) {
-    const seconds = Math.round(value * 60);
-    return { amount: String(seconds), unit: seconds === 1 ? "second" : "seconds" };
+  try {
+    return new Intl.NumberFormat(locale, {
+      style: "unit",
+      unit,
+      unitDisplay: "long",
+      maximumFractionDigits: 2,
+    }).format(amount);
+  } catch {
+    return `${amount} ${unit}`;
   }
-
-  if (value < 60) {
-    return {
-      amount: String(Number(value.toFixed(2))),
-      unit: value === 1 ? "minute" : "minutes",
-    };
-  }
-
-  const hours = Number((value / 60).toFixed(2));
-  return { amount: String(hours), unit: hours === 1 ? "hour" : "hours" };
-}
-
-export function formatDurationText(minutes) {
-  const { amount, unit } = formatDuration(minutes);
-  return `${amount} ${unit}`;
 }
 
 // "example.com" covers example.com and everything under it.

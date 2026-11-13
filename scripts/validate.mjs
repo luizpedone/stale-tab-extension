@@ -25,6 +25,7 @@ const RUNTIME = [
   "settings.js",
   "theme.css",
   "icons",
+  "_locales",
 ];
 
 // A new permission is a deliberate product decision: it needs a justification
@@ -41,10 +42,49 @@ const read = (file) => fs.readFileSync(path.join(ROOT, file), "utf8");
 
 const manifest = JSON.parse(read("manifest.json"));
 
+/* -------------------------------------------------------------------- locales */
+
+const LOCALES_DIR = path.join(ROOT, "_locales");
+const locales = new Map();
+
+if (!fs.existsSync(LOCALES_DIR)) {
+  fail("_locales is missing");
+} else {
+  for (const dir of fs.readdirSync(LOCALES_DIR)) {
+    const file = path.join(LOCALES_DIR, dir, "messages.json");
+    if (!fs.existsSync(file)) {
+      fail(`_locales/${dir} has no messages.json`);
+      continue;
+    }
+    try {
+      locales.set(dir, JSON.parse(fs.readFileSync(file, "utf8")));
+    } catch (error) {
+      fail(`_locales/${dir}/messages.json: ${error.message}`);
+    }
+  }
+}
+
+if (locales.size && !manifest.default_locale) fail("manifest.json has no default_locale");
+if (manifest.default_locale && !locales.has(manifest.default_locale)) {
+  fail(`default_locale "${manifest.default_locale}" has no _locales/${manifest.default_locale}/messages.json`);
+}
+
+const defaultMessages = locales.get(manifest.default_locale) ?? {};
+const resolveMessage = (value) =>
+  typeof value === "string"
+    ? value.replace(/__MSG_(\w+)__/g, (_, key) => defaultMessages[key]?.message ?? `__MISSING_${key}__`)
+    : value;
+
+for (const [, key] of JSON.stringify(manifest).matchAll(/__MSG_(\w+)__/g)) {
+  if (!defaultMessages[key]) fail(`manifest.json uses __MSG_${key}__ but default_locale has no "${key}"`);
+}
+
 if (manifest.manifest_version !== 3) fail("manifest_version must be 3");
 if (!/^\d+(\.\d+){1,3}$/.test(manifest.version ?? "")) fail(`unusable version: ${manifest.version}`);
-if ((manifest.description ?? "").length > 132) {
-  fail(`description is ${manifest.description.length} chars, the store allows 132`);
+
+const description = resolveMessage(manifest.description) ?? "";
+if (description.length > 132) {
+  fail(`description is ${description.length} chars, the store allows 132`);
 }
 if (!manifest.icons?.["128"]) fail("manifest.icons is missing the 128px entry the store requires");
 
@@ -102,6 +142,41 @@ for (const file of jsFiles) {
   if (/\bXMLHttpRequest\b/.test(js)) fail(`${file}: XMLHttpRequest — the extension promises no network requests`);
   if (/\bimport\s*\(\s*["'`]https?:/.test(js)) fail(`${file}: remote dynamic import`);
 }
+
+/* ------------------------------------------------------------------ messages */
+
+const placeholders = (message) => [...message.matchAll(/\$(\d+)/g)].map((m) => m[1]).sort().join(",");
+
+for (const [locale, messages] of locales) {
+  if (locale === manifest.default_locale) continue;
+
+  for (const key of Object.keys(defaultMessages)) {
+    if (!messages[key]) fail(`_locales/${locale}: missing message "${key}"`);
+  }
+  for (const key of Object.keys(messages)) {
+    if (!defaultMessages[key]) fail(`_locales/${locale}: message "${key}" does not exist in ${manifest.default_locale}`);
+    else if (placeholders(messages[key].message) !== placeholders(defaultMessages[key].message)) {
+      fail(`_locales/${locale}: "${key}" has placeholders [${placeholders(messages[key].message)}], default has [${placeholders(defaultMessages[key].message)}]`);
+    }
+  }
+}
+
+// Every key the pages ask for must exist, or the UI renders blank.
+const usedKeys = new Set();
+for (const file of [...htmlFiles, ...jsFiles]) {
+  const source = read(file);
+  for (const match of source.matchAll(/data-i18n(?:-html|-title|-aria-label|-placeholder)?="([A-Za-z0-9_]+)"/g)) usedKeys.add(match[1]);
+  for (const match of source.matchAll(/\bt\(\s*["']([A-Za-z0-9_]+)["']/g)) usedKeys.add(match[1]);
+}
+
+for (const key of usedKeys) {
+  if (!defaultMessages[key]) fail(`message "${key}" is used in a page but not defined in ${manifest.default_locale}`);
+}
+
+const unused = Object.keys(defaultMessages).filter(
+  (key) => !usedKeys.has(key) && !JSON.stringify(manifest).includes(`__MSG_${key}__`),
+);
+if (unused.length) notes.push(`unused messages: ${unused.join(", ")}`);
 
 /* --------------------------------------------------------------------- icons */
 
