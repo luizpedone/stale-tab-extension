@@ -1,0 +1,65 @@
+name: Release
+
+# Tags are the only trigger: a release must be a deliberate act, and the
+# credentials must never be reachable from a pull request (including from a
+# fork). workflow_dispatch exists for re-running a failed upload or uploading
+# without publishing.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      upload_only:
+        description: "Upload without submitting for review"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Upload and publish
+    runs-on: ubuntu-latest
+    # Optional approval gate: add required reviewers to this environment in
+    # repository settings and the job waits for one before touching the store.
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Unit tests
+        run: npm test
+
+      # Also the build: this is what produces dist/<version>.zip, and it fails
+      # on an icon, manifest, permission or locale problem before Google sees it.
+      - name: Validate and build the package
+        run: npm run validate
+
+      - name: Upload and publish
+        env:
+          CWS_SERVICE_ACCOUNT_JSON: ${{ secrets.CWS_SERVICE_ACCOUNT_JSON }}
+          CWS_PUBLISHER_ID: ${{ secrets.CWS_PUBLISHER_ID }}
+          CWS_ITEM_ID: ${{ secrets.CWS_ITEM_ID }}
+        run: |
+          if [ "${{ inputs.upload_only }}" = "true" ]; then
+            node scripts/publish.mjs --no-publish
+          else
+            node scripts/publish.mjs
+          fi
+
+      # Publishing only submits for review; approval is Google's. The zip stays
+      # attached so a rejected submission can be inspected or re-uploaded.
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: released-package
+          path: dist/*.zip
+          if-no-files-found: warn

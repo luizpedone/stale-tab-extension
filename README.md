@@ -119,6 +119,13 @@ handler or `eval()` that MV3 blocks, a permission that arrives without a
 justification in the store listing, a screenshot at the wrong size, and a
 package that leaks development files. The zip it builds is the one to upload.
 
+## Releasing
+
+Tag it: `git tag v0.7.1 && git push origin v0.7.1`. The release workflow runs
+the checks, uploads the package through the Chrome Web Store API and submits it
+for review. Setup, secrets and the things that bite are in
+[RELEASING.md](RELEASING.md).
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
