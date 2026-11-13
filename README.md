@@ -12,6 +12,10 @@ leave the page (and its memory) alive behind the blank screen.
 
 ## Install
 
+[Install it from the Chrome Web Store](https://chromewebstore.google.com/detail/stale-tab-curtain/dhibnicdmppcmkfojhjhamjagjcbafen).
+
+To run from source instead:
+
 1. Open `chrome://extensions`
 2. Turn on **Developer mode** (top right)
 3. Click **Load unpacked** and pick this folder
@@ -118,6 +122,13 @@ broken or that get a submission rejected: a blank or misnamed icon, an inline
 handler or `eval()` that MV3 blocks, a permission that arrives without a
 justification in the store listing, a screenshot at the wrong size, and a
 package that leaks development files. The zip it builds is the one to upload.
+
+## Releasing
+
+Tag it: `git tag v0.7.1 && git push origin v0.7.1`. The release workflow runs
+the checks, uploads the package through the Chrome Web Store API and submits it
+for review. Setup, secrets and the things that bite are in
+[RELEASING.md](RELEASING.md).
 
 ## License
 

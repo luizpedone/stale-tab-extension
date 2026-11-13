@@ -5,7 +5,11 @@ Copy/paste answers for the Developer Dashboard
 
 ## Package
 
-Upload `dist/stale-tab-curtain-0.6.0.zip`.
+Upload the zip that `npm run validate` writes to `dist/` (it is named after the
+manifest version).
+
+Live listing:
+<https://chromewebstore.google.com/detail/stale-tab-curtain/dhibnicdmppcmkfojhjhamjagjcbafen>
 
 ## Store listing
 
