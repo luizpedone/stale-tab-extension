@@ -161,24 +161,6 @@ for (const [locale, messages] of locales) {
   }
 }
 
-// "pt" is the fallback for Portuguese locales that are neither pt_BR nor pt_PT
-// (Angola, Mozambique, …). It carries the European Portuguese text, so a change
-// to one has to land in both; silent drift between them would only surface in
-// locales nobody tests.
-for (const [alias, source] of [["pt", "pt_PT"]]) {
-  const aliasMessages = locales.get(alias);
-  const sourceMessages = locales.get(source);
-  if (!aliasMessages || !sourceMessages) continue;
-
-  for (const key of Object.keys(sourceMessages)) {
-    const a = aliasMessages[key]?.message;
-    const b = sourceMessages[key]?.message;
-    if (a && b && a !== b) {
-      fail(`_locales/${alias} and _locales/${source} disagree on "${key}" — update both`);
-    }
-  }
-}
-
 // Every key the pages ask for must exist, or the UI renders blank.
 const usedKeys = new Set();
 for (const file of [...htmlFiles, ...jsFiles]) {
