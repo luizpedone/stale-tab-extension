@@ -1,0 +1,167 @@
+{
+  "appName": {
+    "message": "Stale Tab Curtain"
+  },
+  "appDesc": {
+    "message": "Unloads background tabs you haven't used in a while, replacing them with a one-click Reactivate page."
+  },
+
+  "popupChecking": {
+    "message": "Checking this page…"
+  },
+  "popupCannotExclude": {
+    "message": "This page can't be excluded"
+  },
+  "popupNoSiteNote": {
+    "message": "Only ordinary web pages can be excluded — this one has no site to add."
+  },
+  "popupExclude": {
+    "message": "Exclude this site"
+  },
+  "popupInclude": {
+    "message": "Include this site again"
+  },
+  "popupNeverSleeps": {
+    "message": "This site never sleeps"
+  },
+  "popupSleepsAfter": {
+    "message": "Sleeps after $1 idle"
+  },
+  "popupExcludedThrough": {
+    "message": "Excluded through $1, which also covers its subdomains."
+  },
+  "popupFlashExcluded": {
+    "message": "Excluded — $1 stays awake from now on."
+  },
+  "popupFlashIncluded": {
+    "message": "Included — $1 can be put to sleep again."
+  },
+  "settingsLink": {
+    "message": "Settings"
+  },
+
+  "optionsTitle": {
+    "message": "Stale Tab Curtain — settings"
+  },
+  "optionsSub": {
+    "message": "Unload tabs you haven't touched in a while. Changes save automatically."
+  },
+  "optionsThresholdLabel": {
+    "message": "Put tabs to sleep after"
+  },
+  "unitMinutes": {
+    "message": "minutes"
+  },
+  "optionsBackgroundOnly": {
+    "message": "Only background tabs are unloaded, never the one you're looking at."
+  },
+  "optionsDomainsLabel": {
+    "message": "Excluded domains"
+  },
+  "optionsDomainsHint": {
+    "message": "One per line (or comma separated). A domain also covers its subdomains, so <code>example.com</code> excludes <code>app.example.com</code> too."
+  },
+  "appearanceLabel": {
+    "message": "Appearance"
+  },
+  "themeSystem": {
+    "message": "System"
+  },
+  "themeLight": {
+    "message": "Light"
+  },
+  "themeDark": {
+    "message": "Dark"
+  },
+  "optionsThemeHint": {
+    "message": "Used by the page shown on sleeping tabs."
+  },
+  "optionsReset": {
+    "message": "Reset to defaults"
+  },
+
+  "errorMinutesPositive": {
+    "message": "Enter a number of minutes greater than 0."
+  },
+  "errorMinutesMax": {
+    "message": "Keep it at $1 minutes or less."
+  },
+  "hintStillSleeping": {
+    "message": "Still sleeping after $1."
+  },
+  "hintSleepsAfter": {
+    "message": "Tabs sleep after $1 without use."
+  },
+
+  "domainsNone": {
+    "message": "No sites excluded."
+  },
+  "domainsOne": {
+    "message": "1 site excluded: $1."
+  },
+  "domainsMany": {
+    "message": "$1 sites excluded."
+  },
+  "domainsIgnoredOne": {
+    "message": "Ignored one entry that isn't a domain: $1."
+  },
+  "domainsIgnoredMany": {
+    "message": "Ignored $1 entries that aren't domains: $2."
+  },
+
+  "statusSaved": {
+    "message": "Saved."
+  },
+  "statusSaveFailed": {
+    "message": "Couldn't save — check that Chrome sync is available."
+  },
+  "statusResetFailed": {
+    "message": "Couldn't reset — check that Chrome sync is available."
+  },
+  "statusResetDone": {
+    "message": "Defaults restored."
+  },
+  "confirmReset": {
+    "message": "Reset every setting to its default? Your excluded sites will be removed."
+  },
+
+  "dormantTitle": {
+    "message": "[Stale] tab"
+  },
+  "dormantTitleWithLabel": {
+    "message": "[Stale] $1"
+  },
+  "dormantHeading": {
+    "message": "This tab was put to sleep."
+  },
+  "dormantUnused": {
+    "message": "It went unused long enough to be unloaded."
+  },
+  "dormantNoAddress": {
+    "message": "Its address wasn't recorded — use the browser's Back button to return to it."
+  },
+  "dormantReason": {
+    "message": "Unloaded after $1 without use, to free memory."
+  },
+  "dormantTip": {
+    "message": "Press Enter or $1 to reopen it, or use the browser's Back button."
+  },
+  "dormantReactivate": {
+    "message": "Reactivate"
+  },
+  "dormantReactivating": {
+    "message": "Reactivating…"
+  },
+  "dormantReopenFailed": {
+    "message": "Couldn't reopen this page. Use the browser's Back button instead."
+  },
+  "dormantNeverSleep": {
+    "message": "Never sleep this site"
+  },
+  "dormantExcluding": {
+    "message": "Excluding…"
+  },
+  "dormantExcludeFailed": {
+    "message": "Couldn't update the exclusion list. Try again from the toolbar popup."
+  }
+}

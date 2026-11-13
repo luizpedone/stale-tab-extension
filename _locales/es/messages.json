@@ -1,0 +1,167 @@
+{
+  "appName": {
+    "message": "Stale Tab Curtain"
+  },
+  "appDesc": {
+    "message": "Descarga las pestañas en segundo plano que llevas tiempo sin usar y las sustituye por una página con un botón para reactivarlas."
+  },
+
+  "popupChecking": {
+    "message": "Comprobando esta página…"
+  },
+  "popupCannotExclude": {
+    "message": "Esta página no se puede excluir"
+  },
+  "popupNoSiteNote": {
+    "message": "Solo se pueden excluir páginas web normales; esta no tiene un sitio que añadir."
+  },
+  "popupExclude": {
+    "message": "Excluir este sitio"
+  },
+  "popupInclude": {
+    "message": "Volver a incluir este sitio"
+  },
+  "popupNeverSleeps": {
+    "message": "Este sitio nunca se suspende"
+  },
+  "popupSleepsAfter": {
+    "message": "Se suspende tras $1 sin uso"
+  },
+  "popupExcludedThrough": {
+    "message": "Excluido por $1, que también cubre sus subdominios."
+  },
+  "popupFlashExcluded": {
+    "message": "Excluido: $1 ya no se suspende."
+  },
+  "popupFlashIncluded": {
+    "message": "Incluido: $1 puede volver a suspenderse."
+  },
+  "settingsLink": {
+    "message": "Ajustes"
+  },
+
+  "optionsTitle": {
+    "message": "Stale Tab Curtain — ajustes"
+  },
+  "optionsSub": {
+    "message": "Descarga las pestañas que llevas tiempo sin tocar. Los cambios se guardan solos."
+  },
+  "optionsThresholdLabel": {
+    "message": "Suspender las pestañas tras"
+  },
+  "unitMinutes": {
+    "message": "minutos"
+  },
+  "optionsBackgroundOnly": {
+    "message": "Solo se descargan las pestañas en segundo plano, nunca la que estás viendo."
+  },
+  "optionsDomainsLabel": {
+    "message": "Dominios excluidos"
+  },
+  "optionsDomainsHint": {
+    "message": "Uno por línea (o separados por comas). Un dominio también cubre sus subdominios, así que <code>example.com</code> excluye también <code>app.example.com</code>."
+  },
+  "appearanceLabel": {
+    "message": "Aspecto"
+  },
+  "themeSystem": {
+    "message": "Sistema"
+  },
+  "themeLight": {
+    "message": "Claro"
+  },
+  "themeDark": {
+    "message": "Oscuro"
+  },
+  "optionsThemeHint": {
+    "message": "Lo usa la página que se muestra en las pestañas suspendidas."
+  },
+  "optionsReset": {
+    "message": "Restaurar valores"
+  },
+
+  "errorMinutesPositive": {
+    "message": "Escribe un número de minutos mayor que 0."
+  },
+  "errorMinutesMax": {
+    "message": "Usa como máximo $1 minutos."
+  },
+  "hintStillSleeping": {
+    "message": "Sigue suspendiéndose tras $1."
+  },
+  "hintSleepsAfter": {
+    "message": "Las pestañas se suspenden tras $1 sin uso."
+  },
+
+  "domainsNone": {
+    "message": "No hay sitios excluidos."
+  },
+  "domainsOne": {
+    "message": "1 sitio excluido: $1."
+  },
+  "domainsMany": {
+    "message": "$1 sitios excluidos."
+  },
+  "domainsIgnoredOne": {
+    "message": "Se ignoró una entrada que no es un dominio: $1."
+  },
+  "domainsIgnoredMany": {
+    "message": "Se ignoraron $1 entradas que no son dominios: $2."
+  },
+
+  "statusSaved": {
+    "message": "Guardado."
+  },
+  "statusSaveFailed": {
+    "message": "No se pudo guardar: comprueba que la sincronización de Chrome esté disponible."
+  },
+  "statusResetFailed": {
+    "message": "No se pudo restablecer: comprueba que la sincronización de Chrome esté disponible."
+  },
+  "statusResetDone": {
+    "message": "Valores restablecidos."
+  },
+  "confirmReset": {
+    "message": "¿Restablecer todos los ajustes? Se eliminarán tus sitios excluidos."
+  },
+
+  "dormantTitle": {
+    "message": "[Suspendida] pestaña"
+  },
+  "dormantTitleWithLabel": {
+    "message": "[Suspendida] $1"
+  },
+  "dormantHeading": {
+    "message": "Esta pestaña se ha suspendido."
+  },
+  "dormantUnused": {
+    "message": "Estuvo sin usarse el tiempo suficiente para descargarla."
+  },
+  "dormantNoAddress": {
+    "message": "No se registró su dirección: usa el botón Atrás del navegador para volver."
+  },
+  "dormantReason": {
+    "message": "Descargada tras $1 sin uso, para liberar memoria."
+  },
+  "dormantTip": {
+    "message": "Pulsa Enter o $1 para reabrirla, o usa el botón Atrás del navegador."
+  },
+  "dormantReactivate": {
+    "message": "Reactivar"
+  },
+  "dormantReactivating": {
+    "message": "Reactivando…"
+  },
+  "dormantReopenFailed": {
+    "message": "No se pudo reabrir esta página. Usa el botón Atrás del navegador."
+  },
+  "dormantNeverSleep": {
+    "message": "No suspender nunca este sitio"
+  },
+  "dormantExcluding": {
+    "message": "Excluyendo…"
+  },
+  "dormantExcludeFailed": {
+    "message": "No se pudo actualizar la lista de exclusiones. Inténtalo de nuevo desde el popup de la barra de herramientas."
+  }
+}

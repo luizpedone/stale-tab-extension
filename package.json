@@ -1,6 +1,6 @@
 {
   "name": "stale-tab-extension",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "private": true,
   "type": "module",
   "description": "Build and validation scripts for the Stale Tab Curtain extension.",

@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Stale Tab Curtain",
-  "version": "0.6.0",
-  "description": "Unloads background tabs you haven't used in a while, replacing them with a one-click Reactivate page.",
+  "name": "__MSG_appName__",
+  "version": "0.7.0",
+  "description": "__MSG_appDesc__",
+  "default_locale": "en",
   "minimum_chrome_version": "102",
   "permissions": [
     "tabs",
