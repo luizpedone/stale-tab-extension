@@ -4,6 +4,9 @@ Pushing a tag like `v0.7.1` builds, validates, uploads and submits the package
 for review. The review itself is still Google's, so this removes the manual zip
 and upload, not the wait.
 
+It has run for real: `v0.7.0` uploaded and submitted 0.7.0, and the status API
+came back `PENDING_REVIEW` with 0.6.0 still `PUBLISHED` until Google approved.
+
 ```
 1. bump "version" in manifest.json     (the store rejects a re-used version)
 2. npm run validate                    (builds dist/, fails on drift)
@@ -54,12 +57,17 @@ node scripts/publish.mjs --no-publish # upload only, leave it as a draft
 ## Things that bite
 
 - **A version bump is mandatory.** Uploading the same version twice fails at
-  the store, not in CI.
+  the store, not in CI. A version that was ever uploaded is spent, even if it
+  was never published.
+- **An empty secret looks set.** `gh secret set NAME` with no value reads stdin,
+  so in a non-interactive shell it stores an empty string while `gh secret list`
+  still shows the name. The release then dies on `CWS_ITEM_ID is not set`. Always
+  pass the value: `gh secret set NAME --body "..."` or `< file`.
 - **Visibility is sticky.** If you change visibility in the dashboard, publish
   once by hand before the API can publish again.
 - **Percentage rollout** (above 10,000 seven-day active users) is a separate
   call — `setPublishedDeployPercentage` — and is not wired up here.
-- **Untested against the live API.** This script has only ever run with
-  `--dry-run`; the first real run is the first real test. Run it locally once
-  before relying on the tag workflow, so a typo in a secret name surfaces
-  somewhere you can see it.
+- **The credential is one key file.** `~/secrets/cws-service-account.json` (or
+  the `CWS_SERVICE_ACCOUNT_JSON` secret). A publisher can have exactly one
+  service account, so deleting and recreating it means re-linking it in the
+  dashboard's Account page before the next release.
