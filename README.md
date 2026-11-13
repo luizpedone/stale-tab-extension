@@ -12,6 +12,10 @@ leave the page (and its memory) alive behind the blank screen.
 
 ## Install
 
+[Install it from the Chrome Web Store](https://chromewebstore.google.com/detail/stale-tab-curtain/dhibnicdmppcmkfojhjhamjagjcbafen).
+
+To run from source instead:
+
 1. Open `chrome://extensions`
 2. Turn on **Developer mode** (top right)
 3. Click **Load unpacked** and pick this folder

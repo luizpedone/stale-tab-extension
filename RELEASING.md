@@ -16,9 +16,11 @@ talking to Google.
 
 ## One-time setup
 
-The API cannot create an item, so the first version and the listing must be
-submitted by hand in the Developer Dashboard. Everything after that can be
-automatic.
+The API cannot create an item, so the first version and the listing had to be
+submitted by hand in the Developer Dashboard. That is done — the listing is live
+at
+<https://chromewebstore.google.com/detail/stale-tab-curtain/dhibnicdmppcmkfojhjhamjagjcbafen>.
+Everything after that can be automatic.
 
 1. **Google Cloud project** — enable the *Chrome Web Store API*.
 2. **Service account** — create one; no IAM roles needed. Create a JSON key and
@@ -31,7 +33,7 @@ automatic.
    | --- | --- |
    | `CWS_SERVICE_ACCOUNT_JSON` | the whole key file, as text |
    | `CWS_PUBLISHER_ID` | Dashboard → *Account* (Publisher ID) |
-   | `CWS_ITEM_ID` | the 32-character extension id |
+   | `CWS_ITEM_ID` | the 32-character extension id (`dhibnicdmppcmkfojhjhamjagjcbafen`, also in the store URL) |
 
 The publishing Google account needs 2-Step Verification enabled, or Google
 refuses to publish.
