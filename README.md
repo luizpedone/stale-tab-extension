@@ -1,5 +1,7 @@
 # Stale Tab Curtain
 
+[![CI](https://github.com/luizpedone/stale-tab-extension/actions/workflows/ci.yml/badge.svg)](https://github.com/luizpedone/stale-tab-extension/actions/workflows/ci.yml)
+
 A minimal Chrome extension. Any background tab you haven't looked at for X
 minutes gets unloaded and replaced with a small extension page holding a
 **Reactivate** button. Reactivating navigates back to the original address.
@@ -93,6 +95,22 @@ profile.
   fresh.
 - The scan runs once a minute, so any threshold below that only changes how old
   a tab must be, not how fast it goes to sleep.
+
+## Development
+
+There is no build step and no dependencies — the extension *is* the source
+files. The scripts need Node 20.
+
+```bash
+npm test         # unit tests for the pure logic in settings.js
+npm run validate # checks the manifest, CSP, icons and store graphics, then builds dist/*.zip
+```
+
+`npm run validate` is what CI runs. It enforces the things that have actually
+broken or that get a submission rejected: a blank or misnamed icon, an inline
+handler or `eval()` that MV3 blocks, a permission that arrives without a
+justification in the store listing, a screenshot at the wrong size, and a
+package that leaks development files. The zip it builds is the one to upload.
 
 ## License
 

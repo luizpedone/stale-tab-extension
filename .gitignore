@@ -4,3 +4,4 @@
 .idea/
 .worktrees/
 dist/
+node_modules/
