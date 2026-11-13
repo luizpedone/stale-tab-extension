@@ -93,3 +93,7 @@ profile.
   fresh.
 - The scan runs once a minute, so any threshold below that only changes how old
   a tab must be, not how fast it goes to sleep.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
