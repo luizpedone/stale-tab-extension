@@ -1,0 +1,167 @@
+{
+  "appName": {
+    "message": "Stale Tab Curtain"
+  },
+  "appDesc": {
+    "message": "Descarrega separadores em segundo plano que não usa há algum tempo, substituindo-os por uma página com um botão para os reativar."
+  },
+
+  "popupChecking": {
+    "message": "A verificar esta página…"
+  },
+  "popupCannotExclude": {
+    "message": "Não é possível excluir esta página"
+  },
+  "popupNoSiteNote": {
+    "message": "Só é possível excluir páginas web normais — esta não tem um site para adicionar."
+  },
+  "popupExclude": {
+    "message": "Excluir este site"
+  },
+  "popupInclude": {
+    "message": "Voltar a incluir este site"
+  },
+  "popupNeverSleeps": {
+    "message": "Este site nunca é suspenso"
+  },
+  "popupSleepsAfter": {
+    "message": "É suspenso após $1 sem utilização"
+  },
+  "popupExcludedThrough": {
+    "message": "Excluído através de $1, que também abrange os subdomínios."
+  },
+  "popupFlashExcluded": {
+    "message": "Excluído — $1 deixa de ser suspenso."
+  },
+  "popupFlashIncluded": {
+    "message": "Incluído — $1 pode voltar a ser suspenso."
+  },
+  "settingsLink": {
+    "message": "Definições"
+  },
+
+  "optionsTitle": {
+    "message": "Stale Tab Curtain — definições"
+  },
+  "optionsSub": {
+    "message": "Descarregue separadores que não usa há algum tempo. As alterações são guardadas automaticamente."
+  },
+  "optionsThresholdLabel": {
+    "message": "Suspender separadores após"
+  },
+  "unitMinutes": {
+    "message": "minutos"
+  },
+  "optionsBackgroundOnly": {
+    "message": "Só os separadores em segundo plano são descarregados, nunca aquele que está a ver."
+  },
+  "optionsDomainsLabel": {
+    "message": "Domínios excluídos"
+  },
+  "optionsDomainsHint": {
+    "message": "Um por linha (ou separados por vírgulas). Um domínio também abrange os subdomínios, pelo que <code>example.com</code> exclui também <code>app.example.com</code>."
+  },
+  "appearanceLabel": {
+    "message": "Aspeto"
+  },
+  "themeSystem": {
+    "message": "Sistema"
+  },
+  "themeLight": {
+    "message": "Claro"
+  },
+  "themeDark": {
+    "message": "Escuro"
+  },
+  "optionsThemeHint": {
+    "message": "Utilizado pela página apresentada nos separadores suspensos."
+  },
+  "optionsReset": {
+    "message": "Repor predefinições"
+  },
+
+  "errorMinutesPositive": {
+    "message": "Introduza um número de minutos superior a 0."
+  },
+  "errorMinutesMax": {
+    "message": "Use no máximo $1 minutos."
+  },
+  "hintStillSleeping": {
+    "message": "Continua a ser suspenso após $1."
+  },
+  "hintSleepsAfter": {
+    "message": "Os separadores são suspensos após $1 sem utilização."
+  },
+
+  "domainsNone": {
+    "message": "Nenhum site excluído."
+  },
+  "domainsOne": {
+    "message": "1 site excluído: $1."
+  },
+  "domainsMany": {
+    "message": "$1 sites excluídos."
+  },
+  "domainsIgnoredOne": {
+    "message": "Foi ignorada uma entrada que não é um domínio: $1."
+  },
+  "domainsIgnoredMany": {
+    "message": "Foram ignoradas $1 entradas que não são domínios: $2."
+  },
+
+  "statusSaved": {
+    "message": "Guardado."
+  },
+  "statusSaveFailed": {
+    "message": "Não foi possível guardar — verifique se a sincronização do Chrome está disponível."
+  },
+  "statusResetFailed": {
+    "message": "Não foi possível repor — verifique se a sincronização do Chrome está disponível."
+  },
+  "statusResetDone": {
+    "message": "Predefinições repostas."
+  },
+  "confirmReset": {
+    "message": "Repor todas as definições nos valores predefinidos? Os sites excluídos serão removidos."
+  },
+
+  "dormantTitle": {
+    "message": "[Suspenso] separador"
+  },
+  "dormantTitleWithLabel": {
+    "message": "[Suspenso] $1"
+  },
+  "dormantHeading": {
+    "message": "Este separador foi suspenso."
+  },
+  "dormantUnused": {
+    "message": "Ficou sem utilização tempo suficiente para ser descarregado."
+  },
+  "dormantNoAddress": {
+    "message": "O endereço não foi registado — utilize o botão Retroceder do navegador para voltar."
+  },
+  "dormantReason": {
+    "message": "Descarregado após $1 sem utilização, para libertar memória."
+  },
+  "dormantTip": {
+    "message": "Prima Enter ou $1 para o reabrir, ou utilize o botão Retroceder do navegador."
+  },
+  "dormantReactivate": {
+    "message": "Reativar"
+  },
+  "dormantReactivating": {
+    "message": "A reativar…"
+  },
+  "dormantReopenFailed": {
+    "message": "Não foi possível reabrir esta página. Utilize o botão Retroceder do navegador."
+  },
+  "dormantNeverSleep": {
+    "message": "Nunca suspender este site"
+  },
+  "dormantExcluding": {
+    "message": "A excluir…"
+  },
+  "dormantExcludeFailed": {
+    "message": "Não foi possível atualizar a lista de exclusões. Tente novamente a partir do popup da barra de ferramentas."
+  }
+}
