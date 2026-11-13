@@ -51,8 +51,9 @@ profile.
 
 ## Languages
 
-English, Brazilian Portuguese, European Portuguese, Spanish and French,
-picked from Chrome's UI language. Adding another is one file — `_locales/<locale>/messages.json` — and
+English, Brazilian Portuguese, European Portuguese (`pt_PT` and a `pt` fallback
+for other Portuguese locales), Spanish and French, picked from Chrome's UI
+language. Adding another is one file — `_locales/<locale>/messages.json` — and
 `npm run validate` fails if a locale is missing a key or uses different
 placeholders from the default.
 
